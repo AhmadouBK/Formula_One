@@ -5,19 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Driver {
+public class Team {
     @Id
     @Column(unique = true, updatable = false, nullable = false)
-    private Integer driver_number;
-    @Column(nullable = false)
+    private Integer team_number;
+    @Column(unique = true, nullable = false)
     private String name;
     @Column
-    private Integer driver_points;
+    private Integer team_points;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "team_number")
-    private Team team;
+    @JoinColumn(name = "number")
+    private League league;
 }
