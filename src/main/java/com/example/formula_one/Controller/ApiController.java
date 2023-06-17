@@ -1,5 +1,6 @@
 package com.example.formula_one.Controller;
 
+import com.example.formula_one.Entity.Driver;
 import com.example.formula_one.Entity.League;
 import com.example.formula_one.Entity.Team;
 import com.example.formula_one.Service.ApiService;
@@ -42,7 +43,7 @@ public class ApiController {
         return ResponseEntity.ok(teams);
     }
     @PostMapping("/team/add")
-    public ResponseEntity<Team> addLeague(@RequestBody Team team) {
+    public ResponseEntity<Team> addTeam(@RequestBody Team team) {
         Team addedteam = service.addTeam(team);
         return ResponseEntity.ok(addedteam);
     }
@@ -54,6 +55,28 @@ public class ApiController {
     @DeleteMapping("/team/{id}")
     public ResponseEntity<Void> deleteTeam(@PathVariable("id") Integer teamId) {
         service.deleteLeague(teamId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/driver")
+    public ResponseEntity<List<Driver>> getAllDrivers(){
+        List<Driver> drivers = service.findAllDriver();
+        return ResponseEntity.ok(drivers);
+    }
+    @PostMapping("/driver/add")
+    public ResponseEntity<Driver> addDriver(@RequestBody Driver driver) {
+        Driver addedDriver = service.addDriver(driver);
+        return ResponseEntity.ok(addedDriver);
+    }
+    @PutMapping("/driver/{id}")
+    public ResponseEntity<Driver> updateDriver(@PathVariable("id") @RequestBody Driver updatedDriver) {
+        updatedDriver = service.updateDriver(updatedDriver);
+        return ResponseEntity.ok(updatedDriver);
+    }
+
+    @DeleteMapping("/driver/{id}")
+    public ResponseEntity<Void> deleteDriver(@PathVariable("id") Integer driverId) {
+        service.deleteDriver(driverId);
         return ResponseEntity.noContent().build();
     }
 }

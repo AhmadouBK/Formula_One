@@ -7,7 +7,6 @@ import com.example.formula_one.Repository.DriverRepository;
 import com.example.formula_one.Repository.LeagueRepository;
 import com.example.formula_one.Repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class ApiService {
         return leagueRepository.save(league);
     }
     public List<League> findAllLeague(){
-        return leagueRepository.findAll(Sort.by(Sort.Direction.ASC, "number"));
+        return leagueRepository.findAll();
     }
     public League updateLeague (League league){
         if (leagueRepository.existsById(league.getNumber())) {
@@ -44,7 +43,7 @@ public class ApiService {
         return teamRepository.save(team);
     }
     public List<Team> findAllTeam(){
-        return teamRepository.findAll(Sort.by("team_points"));
+        return teamRepository.findAll();
     }
     public Team updateTeam(Team team){
         if (teamRepository.existsById(team.getTeam_number())) {
@@ -66,7 +65,7 @@ public class ApiService {
         return driverRepository.save(driver);
     }
     public List<Driver> findAllDriver(){
-        return driverRepository.findAll(Sort.by("driver_points"));
+        return driverRepository.findAll();
     }
     public Driver updateDriver(Driver driver){
         if (driverRepository.existsById(driver.getDriver_number())) {
@@ -75,7 +74,6 @@ public class ApiService {
             throw new IllegalArgumentException("Driver does not exist.");
         }
     }
-
     public void deleteDriver (Integer driver_id){
         if (driverRepository.existsById(driver_id)) {
             driverRepository.deleteById(driver_id);
