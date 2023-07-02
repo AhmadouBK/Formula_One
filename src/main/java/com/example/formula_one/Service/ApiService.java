@@ -43,7 +43,7 @@ public class ApiService {
         return teamRepository.save(team);
     }
     public List<Team> findAllTeam(){
-        return teamRepository.findAll();
+        return teamRepository.findAllByOrderByTeamPointsDesc();
     }
     public Team updateTeam(Team team){
         if (teamRepository.existsById(team.getTeam_number())) {
@@ -65,7 +65,7 @@ public class ApiService {
         return driverRepository.save(driver);
     }
     public List<Driver> findAllDriver(){
-        return driverRepository.findAll();
+        return driverRepository.findAllByOrderByDriverPointsDesc();
     }
     public Driver updateDriver(Driver driver){
         if (driverRepository.existsById(driver.getDriver_number())) {
