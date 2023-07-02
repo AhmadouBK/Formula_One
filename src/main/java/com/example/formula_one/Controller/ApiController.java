@@ -6,6 +6,7 @@ import com.example.formula_one.Entity.Team;
 import com.example.formula_one.Service.ApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
